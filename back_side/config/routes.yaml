@@ -1,3 +1,7 @@
 index:
    path: /
    controller: App\Controller\BaseController::index
+
+add_person:
+   path: /add_person
+   controller: App\Controller\BaseController::addPerson
