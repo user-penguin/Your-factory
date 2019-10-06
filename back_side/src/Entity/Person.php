@@ -11,6 +11,18 @@ use Doctrine\ORM\Mapping as ORM;
 class Person
 {
     /**
+     * @return array
+     */
+    public static function getTypes()
+    {
+        return [
+            'student' => 'student',
+            'parent' => 'parent',
+            'employee' => 'employee',
+        ];
+    }
+
+    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
