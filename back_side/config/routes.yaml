@@ -5,3 +5,7 @@ index:
 add_person:
    path: /add_person
    controller: App\Controller\BaseController::addPerson
+
+view_all_persons:
+   path: /view_all_persons
+   controller: App\Controller\BaseController::viewAll

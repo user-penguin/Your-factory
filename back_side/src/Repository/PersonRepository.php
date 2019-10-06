@@ -7,6 +7,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Person|null find($id, $lockMode = null, $lockVersion = null)
@@ -31,5 +33,21 @@ class PersonRepository extends ServiceEntityRepository
         $eM = $this->getEntityManager();
         $eM->persist($person);
         $eM->flush();
+    }
+
+    /**
+     * @return Query
+     */
+    public function getFindAllPersonsQuery()
+    {
+        /** @var QueryBuilder $qB */
+        $qB = $this->createQueryBuilder('p');
+
+        return $qB
+
+            ->orderBy('p.id', 'ASC')
+
+            ->getQuery()
+            ;
     }
 }

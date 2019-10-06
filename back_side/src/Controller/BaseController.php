@@ -7,6 +7,7 @@ use App\Entity\Person;
 use App\Repository\PersonRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,4 +46,25 @@ class BaseController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param PersonRepository $personRepos
+     * @param PaginatorInterface $knp
+     * @return Response
+     */
+    public function viewAll(Request $request, PersonRepository $personRepos, PaginatorInterface $knp)
+    {
+        $recordLimit = 10;
+         $pagination = $knp->paginate(
+            $personRepos->getFindAllPersonsQuery(),
+            $request->query->getInt('page', 1),
+            $recordLimit
+        );
+
+        return $this->render('InformationLayer/all_persons.html.twig', [
+            'pagination' => $pagination,
+        ]);
+    }
+
 }
