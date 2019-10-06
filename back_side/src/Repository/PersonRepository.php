@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Person;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 
 /**
  * @method Person|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +21,15 @@ class PersonRepository extends ServiceEntityRepository
         parent::__construct($registry, Person::class);
     }
 
-    // /**
-    //  * @return Person[] Returns an array of Person objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param Person $person
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function addPerson(Person $person)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $eM = $this->getEntityManager();
+        $eM->persist($person);
+        $eM->flush();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Person
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

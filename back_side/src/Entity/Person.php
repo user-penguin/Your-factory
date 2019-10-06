@@ -30,30 +30,31 @@ class Person
     private $id;
 
     /**
-     * @var string $firstName
+     * @var string|null $firstName
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $firstName;
 
     /**
-     * @var string $lastName
+     * @var string|null $lastName
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $lastName;
 
     /**
-     * @var string $patronymic
+     * @var string|null $patronymic
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $patronymic;
 
     /**
+     * @var string|null $role
      * @ORM\Column(type="string", columnDefinition="ENUM('student', 'parent', 'employee')")
      */
     private $role;
 
     /**
-     * @var string $phone
+     * @var string|null $phone
      * @ORM\Column(type="string", length=20, nullable=false)
      */
     private $phone;
@@ -61,7 +62,7 @@ class Person
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -77,7 +78,7 @@ class Person
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -93,7 +94,7 @@ class Person
     /**
      * @return string
      */
-    public function getPatronymic(): string
+    public function getPatronymic(): ?string
     {
         return $this->patronymic;
     }
@@ -109,7 +110,7 @@ class Person
     /**
      * @return string
      */
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
@@ -127,4 +128,22 @@ class Person
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role): void
+    {
+        $this->role = $role;
+    }
+
+
 }
