@@ -13,3 +13,9 @@ view_all_persons:
 api_requests:
    path: /api_requests
    controller: App\Controller\BaseController::apiPage
+
+
+# API ACRM zone
+get_token:
+   path: /acrm/get_token
+   controller: App\Controller\AcrmController::getToken
