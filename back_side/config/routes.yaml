@@ -9,3 +9,7 @@ add_person:
 view_all_persons:
    path: /view_all_persons
    controller: App\Controller\BaseController::viewAll
+
+api_requests:
+   path: /api_requests
+   controller: App\Controller\BaseController::apiPage

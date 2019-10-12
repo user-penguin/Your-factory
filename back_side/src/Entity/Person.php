@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PersonRepository")
@@ -32,18 +33,21 @@ class Person
     /**
      * @var string|null $firstName
      * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Regex(pattern="/^[A-Z]{1}[a-z]*$/", message="govnocase deteted")
      */
     private $firstName;
 
     /**
      * @var string|null $lastName
      * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Regex(pattern="/^[A-Z]{1}[a-z]*$/", message="govnocase deteted")
      */
     private $lastName;
 
     /**
      * @var string|null $patronymic
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(pattern="/^[A-Z]{1}[a-z]*$/", message="govnocase deteted")
      */
     private $patronymic;
 

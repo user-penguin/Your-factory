@@ -9,6 +9,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -47,6 +48,11 @@ class BaseController extends AbstractController
         ]);
     }
 
+    public function apiPage()
+    {
+        return $this->render('InformationLayer/APIrequests.html.twig');
+    }
+
     /**
      * @param Request $request
      * @param PersonRepository $personRepos
@@ -56,7 +62,7 @@ class BaseController extends AbstractController
     public function viewAll(Request $request, PersonRepository $personRepos, PaginatorInterface $knp)
     {
         $recordLimit = 10;
-         $pagination = $knp->paginate(
+        $pagination = $knp->paginate(
             $personRepos->getFindAllPersonsQuery(),
             $request->query->getInt('page', 1),
             $recordLimit
