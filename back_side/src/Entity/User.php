@@ -7,9 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PersonRepository")
- * @ORM\Table(name="persons")
+ * @ORM\Table(name="users")
  */
-class Person
+class User
 {
     /**
      * @return array
@@ -53,7 +53,7 @@ class Person
 
     /**
      * @var string|null $role
-     * @ORM\Column(type="string", columnDefinition="ENUM('student', 'parent', 'employee')")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $role;
 
